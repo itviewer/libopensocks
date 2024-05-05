@@ -4,4 +4,8 @@
 !.idea/modules.xml
 
 test.go
-libopensocks
+libopensocks.a
+libopensocks.dll
+libopensocks.so
+libopensocks.h
+libopensocks.lib

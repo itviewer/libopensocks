@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="go build libopensocks" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+  <configuration default="false" name="go build libopensocks.go" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
     <module name="libopensocks" />
     <working_directory value="$PROJECT_DIR$" />
-    <go_parameters value="-o libopensocks" />
+    <go_parameters value="--buildmode=c-archive -o libopensocks.a" />
     <kind value="FILE" />
     <package value="libopensocks" />
     <directory value="$PROJECT_DIR$" />
