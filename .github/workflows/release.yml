@@ -46,21 +46,25 @@ jobs:
       run: |
         if [ "${{ matrix.build }}" = "linux" ]; then
           go build -trimpath -ldflags "-s -w" --buildmode=c-archive -o libopensocks.a libopensocks.go
+          go build -trimpath -ldflags "-s -w" --buildmode=c-shared -o libopensocks.so libopensocks.go
         elif [ "${{ matrix.build }}" = "windows" ]; then
           go build -trimpath -ldflags "-s -w" --buildmode=c-archive -o libopensocks.a libopensocks.go
+          go build -trimpath -ldflags "-s -w" --buildmode=c-shared -o libopensocks.dll libopensocks.go
         elif [ "${{ matrix.build }}" = "macos" ]; then
           go build -trimpath -ldflags "-s -w" --buildmode=c-archive -o libopensocks.a libopensocks.go
+          go build -trimpath -ldflags "-s -w" --buildmode=c-shared -o libopensocks.so libopensocks.go
         elif [ "${{ matrix.build }}" = "macos-arm64" ]; then
           go build -trimpath -ldflags "-s -w" --buildmode=c-archive -o libopensocks.a libopensocks.go
+          go build -trimpath -ldflags "-s -w" --buildmode=c-shared -o libopensocks.so libopensocks.go
         fi
     - name: Build archive
       shell: bash
       run: |
         # ls -lR
         if [ "${{ matrix.build }}" = "windows" ]; then
-          7z a "${{ matrix.archive-name }}" libopensocks.a libopensocks.h
+          7z a "${{ matrix.archive-name }}" libopensocks.dll libopensocks.a libopensocks.h
         else
-          tar -czf "${{ matrix.archive-name }}" libopensocks.a libopensocks.h
+          tar -czf "${{ matrix.archive-name }}" libopensocks.so libopensocks.a libopensocks.h
         fi
     - name: Continuous release
       uses: softprops/action-gh-release@v1
